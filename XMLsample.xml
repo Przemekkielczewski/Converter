@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+<book>
+<title>Anna Cmik</title>
+<publisher>Tomiszcze</publisher>
+<author>Roland Marwin</author>
+<format>Folio</format>
+<year>2005</year>
+</book>
+<book>
+<title>Broszurka o Walce</title>
+<publisher>Cztery Koty</publisher>
+<author>Max Werner</author>
+<format>Sexto</format>
+<year>2000</year>
+</book>
+<book>
+<title>Ciemno</title>
+<publisher>Tomiszcze</publisher>
+<author>Laura Mecheniuk</author>
+<format>Folio</format>
+<year>2007</year>
+</book>
+</books>

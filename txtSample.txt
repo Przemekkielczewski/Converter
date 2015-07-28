@@ -1,0 +1,7 @@
+Nazwisko;imie;stanowisko;dni_urlopu;data_zatrudnienia
+Chybcik;Rafal;referent;20;2011-06-01
+Kowalski;Jan;starszy referent;28;2005-01-01
+Nosalski;Adam;referent;20;2009-04-01
+Stoch;Anna;kierownik jednostki;28;2005-01-01
+Wierucha;Maria;Kancelistka;28;2007-08-01
+Ziemba;Ewa;referent;20;2009-05-01

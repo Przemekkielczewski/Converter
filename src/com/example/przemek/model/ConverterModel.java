@@ -18,7 +18,7 @@ public class ConverterModel {
 	{
 		File csvFile = chooserFile;
 		try {
-			FileWriter writer = new FileWriter(this.createFile(userRoot));
+			FileWriter writer = new FileWriter(this.createFile(userRoot, ".xml"));
 			Scanner reader = new Scanner(csvFile);
 			
 			writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
@@ -49,10 +49,54 @@ public class ConverterModel {
 			e.printStackTrace();
 		}
 	}
+	
+	public void parseCsvJson
+	(File chooserFile, String userRoot, String userObject, String userReg)
+	{
+		File csvFile = chooserFile;
+		try {
+			FileWriter writer = new FileWriter(this.createFile(userRoot, ".Json"));
+			Scanner reader = new Scanner(csvFile);
+			
+			writer.write("{ \"" + userRoot + "\":[");
+			// root podany przez u¿ytkownika
+			String header = reader.nextLine();
+			String[] headerParts = this.parseLine(header, userReg);
 
-	public File createFile(String fileName) {
+			while (reader.hasNext() == true) {
+				String line = reader.nextLine();
+				String[] lineParts = this.parseLine(line, userReg);
+				// obiekt podany przez u¿ytkownika
+				writer.write ("{");
+				for (int i = 0; i < headerParts.length; i++) {
+					writer.write("\"" + headerParts[i] + "\":");
+					writer.write("\"" + lineParts[i] + "\"");
+					if (i < headerParts.length-1) {
+						writer.write(", ");	
+					}
+				}
+				
+				if (reader.hasNext() == true) {
+				writer.write("},");
+				}
+				else {
+					writer.write("}");
+				} 
+			}
+			
+			writer.write("]}");
+			writer.close();
+			reader.close();
+			this.progressInfo = 1;
+		} catch (IOException e) {
+			this.progressInfo = 2;
+			e.printStackTrace();
+		}
+	}
+
+	public File createFile(String fileName, String extension) {
 		File file = new File(
-		fileName + ".xml");
+		fileName + extension);
 		System.out.println(file.getPath());
 		if (file.exists()) {
 		} else

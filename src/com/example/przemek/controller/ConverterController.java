@@ -17,20 +17,34 @@ public class ConverterController {
 		this.converterFrame = frame;
 		this.converterModel = model;
 
-		this.converterFrame.addParseListener(new listenerForParse());
+		this.converterFrame.addConvertXmlListener(new listenerForXmlConverter());
+		this.converterFrame.addConvertJsonListener(new listenerForJsonConverter());
 		this.converterFrame.addExitListener(new listenerForExit());
 		this.converterFrame.addHelpListener(new listenerForHelp());
 	}
 	
-	class listenerForParse implements ActionListener {
+	class listenerForXmlConverter implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			converterFrame.setInfoField("Parsing started");
+			converterFrame.setInfoField("converting started");
 			converterModel.parseCsvXml
 			(converterFrame.getChooserFile(), converterFrame.getRootName(), 
 					converterFrame.getobjectName(), 
 					converterFrame.getseparatorType());
-			converterFrame.setInfoField("Parsing started\n" + 
+			converterFrame.setInfoField("converting started\n" + 
+					converterModel.progressInfo());
+		}
+	}
+	
+	class listenerForJsonConverter implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			converterFrame.setInfoField("converting started");
+			converterModel.parseCsvJson
+			(converterFrame.getChooserFile(), converterFrame.getRootName(), 
+					converterFrame.getobjectName(), 
+					converterFrame.getseparatorType());
+			converterFrame.setInfoField("converting started\n" + 
 					converterModel.progressInfo());
 		}
 	}
@@ -52,7 +66,8 @@ public class ConverterController {
 					+ "is name of root element objects and separator \n"
 					+ "which separates the values. If there is space \n"
 					+ "after a coma write it also in the separator \n"
-					+ "field. Converter requires header in csv file.");
+					+ "field. Converter requires header in csv file.\n"
+					+ "Remeber to use UTF-8 characters.");
 		}
 	}
 }

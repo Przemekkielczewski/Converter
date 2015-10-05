@@ -39,13 +39,14 @@ public class ConverterFrame extends JFrame{
 	private FileNameExtensionFilter filter;
 	
 	private JPanel buttonPanel;
-	private JButton convertButton;
+	private JButton convertXmlButton;
+	private JButton convertJsonButton;
 	private JButton exitButton;
 	private JButton helpButton;
 	
 	public ConverterFrame() {
 	this.setSize(600, 650);
-	this.setTitle("CSV to XML Converter");
+	this.setTitle("CSV Converter");
 	
 	mainPanel = new JPanel();
 	mainPanelTitle = new String("Enter format parameters");
@@ -83,10 +84,12 @@ public class ConverterFrame extends JFrame{
 	this.add(labelPanel, BorderLayout.CENTER);
 	
 	buttonPanel = new JPanel();
-	convertButton = new JButton("Convert");
+	convertXmlButton = new JButton("Convert to xml");
+	convertJsonButton = new JButton("Convert to Json");
 	exitButton = new JButton("Exit");
 	helpButton = new JButton("Help");
-	buttonPanel.add(convertButton);
+	buttonPanel.add(convertXmlButton);
+	buttonPanel.add(convertJsonButton);
 	buttonPanel.add(exitButton);
 	buttonPanel.add(helpButton);
 	this.add(buttonPanel, BorderLayout.SOUTH);
@@ -113,8 +116,12 @@ public class ConverterFrame extends JFrame{
 		this.infoField.setText(info);
 	}
 	
-	public void addParseListener (ActionListener actionListener) {
-		this.convertButton.addActionListener(actionListener);
+	public void addConvertXmlListener (ActionListener actionListener) {
+		this.convertXmlButton.addActionListener(actionListener);
+	}
+	
+	public void addConvertJsonListener (ActionListener actionListener) {
+		this.convertJsonButton.addActionListener(actionListener);
 	}
 	
 	public void addExitListener (ActionListener actionListener) {

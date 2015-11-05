@@ -31,14 +31,14 @@ public class ConverterModel {
 			while (reader.hasNext() == true) {
 				String line = reader.nextLine();
 				String[] lineParts = this.parseLine(line, userReg);
-				writer.write("<" + userObject + ">");
+				writer.write("<" + userObject + ">" + System.lineSeparator());
 				// obiekt podany przez u¿ytkownika
 				for (int i = 0; i < headerParts.length; i++) {
 					writer.write("<" + headerParts[i] + ">");
 					writer.write(lineParts[i]);
-					writer.write("</" + headerParts[i] + ">");
+					writer.write("</" + headerParts[i] + ">" + System.lineSeparator());
 				}
-				writer.write("</" + userObject + ">");
+				writer.write("</" + userObject + ">" + System.lineSeparator());;
 			}
 			writer.write("</" + userRoot + ">" + System.lineSeparator());
 			writer.close();
@@ -58,7 +58,7 @@ public class ConverterModel {
 			FileWriter writer = new FileWriter(this.createFile(userRoot, ".Json"));
 			Scanner reader = new Scanner(csvFile);
 			
-			writer.write("{ \"" + userRoot + "\":[");
+			writer.write("{ \"" + userRoot + "\": [" + System.lineSeparator());
 			// root podany przez u¿ytkownika
 			String header = reader.nextLine();
 			String[] headerParts = this.parseLine(header, userReg);
@@ -77,10 +77,10 @@ public class ConverterModel {
 				}
 				
 				if (reader.hasNext() == true) {
-				writer.write("},");
+				writer.write("}, " + System.lineSeparator());
 				}
 				else {
-					writer.write("}");
+					writer.write("}" + System.lineSeparator());
 				} 
 			}
 			
